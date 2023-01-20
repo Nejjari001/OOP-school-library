@@ -7,3 +7,4 @@ class Main
     app.library_menu
   end
 end
+
