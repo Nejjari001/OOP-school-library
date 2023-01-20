@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 require './app'
 
 class Main
@@ -7,4 +6,3 @@ class Main
     app.library_menu
   end
 end
-
