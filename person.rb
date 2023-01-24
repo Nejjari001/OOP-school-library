@@ -3,14 +3,10 @@ require './capitalize_decorator'
 require './trimmer_decorator'
 
 class Person < Nameable
-  # getter and setter for name variable
-  attr_accessor :name, :age
+  attr_reader :id
+  attr_accessor :name, :age, :rentals
 
-  # getter for id variable
-  attr_reader :id, :rentals
-
-  # constructor method
-  def initialize(age, name = 'Unknown', parent_permission = 'true')
+  def initialize(age, name = 'Unknown', parent_permission = true)
     super()
     @id = Random.rand(1..1000)
     @name = name
@@ -19,21 +15,23 @@ class Person < Nameable
     @rentals = []
   end
 
-  # Private method of_age? that returns true if @age is greater
+  private
+
   def of_age?
     @age >= 18
   end
 
-  # public method can_use_services?
+  public
+
   def can_use_services?
-    of_age? || @parent_permission == 'true'
+    of_age? || @parent_permission
   end
 
-  # public method correct name that returns name attribute
   def correct_name
     @name
   end
 
-  # make of_age method private
-  private :of_age?
+  def add_rental(rental)
+    @rentals << rental
+  end
 end
