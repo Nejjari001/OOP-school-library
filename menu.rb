@@ -3,14 +3,17 @@ class Menu
   def initialize
     @app = App.new
   end
+
   def welcome_message
     add_boundary
     puts 'Welcome to School library App!'
     add_boundary
   end
+
   def exit_app
     puts 'Thank you for using school library'
   end
+
   def display_list_of_options
     welcome_message
     puts '
@@ -25,8 +28,10 @@ class Menu
     print 'Option: '
     option = gets.chomp.to_i
     return exit_app if option == 7 # handle exit application here
+
     handle_option(option) # handle other options
   end
+
   def handle_option(option)
     case option
     when 1
@@ -46,6 +51,7 @@ class Menu
     end
     display_list_of_options
   end
+
   def add_boundary
     char = '-'
     puts char * 70
