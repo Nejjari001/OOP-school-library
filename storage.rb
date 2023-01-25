@@ -73,6 +73,7 @@ class Storage
 
   def load_rentals
     return unless File.exist?('rentals.json')
+
     JSON.parse(File.read('rentals.json')).map do |rental|
       date = rental['date']
       person = find_person(rental['person_id'])
@@ -81,6 +82,7 @@ class Storage
       @app.rentals.push(new_rental)
     end
   end
+
   def save_rentals
     rentals_json = []
     @app.rentals.each do |rental|
