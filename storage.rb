@@ -70,3 +70,22 @@ class Storage
   def find_book(book_title)
     @app.books.each { |book| return book if book.title == book_title }
   end
+
+  def load_rentals
+    return unless File.exist?('rentals.json')
+    JSON.parse(File.read('rentals.json')).map do |rental|
+      date = rental['date']
+      person = find_person(rental['person_id'])
+      book = find_book(rental['book_title'])
+      new_rental = Rental.new(date, book, person[0])
+      @app.rentals.push(new_rental)
+    end
+  end
+  def save_rentals
+    rentals_json = []
+    @app.rentals.each do |rental|
+      rentals_json.push({ date: rental.date, person_id: rental.person.id, book_title: rental.book.title })
+    end
+    open('rentals.json', 'w') { |f| f << JSON.generate(rentals_json) }
+  end
+end
