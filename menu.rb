@@ -1,7 +1,11 @@
 require './app'
+require './storage'
+
 class Menu
   def initialize
     @app = App.new
+    @storage = Storage.new(@app)
+    @storage.read_data
   end
 
   def welcome_message
@@ -12,6 +16,7 @@ class Menu
 
   def exit_app
     puts 'Thank you for using school library'
+    @storage.write_data
   end
 
   def display_list_of_options
@@ -25,6 +30,7 @@ class Menu
       5 - Create a rental
       6 - List all rentals for a given person id
       7 - Exit'
+
     print 'Option: '
     option = gets.chomp.to_i
     return exit_app if option == 7 # handle exit application here
