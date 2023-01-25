@@ -1,8 +1,8 @@
-require './app'
+require './menu'
 
-class Main
-  def main
-    app = App.new
-    app.library_menu
-  end
+def main
+  menu = Menu.new
+  menu.display_list_of_options
 end
+
+main
