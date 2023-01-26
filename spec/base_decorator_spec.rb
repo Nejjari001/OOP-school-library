@@ -1,4 +1,4 @@
-require_relative '../base_decorator'
+require_relative '../decorator'
 
 describe BaseDecorator do
   let(:mocked_nameable) { double('testing nameable', correct_name: 'sam') }
